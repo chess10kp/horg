@@ -1,0 +1,35 @@
+name: horg
+version: 0.1.0.0
+synopsis: Org mode parser in Haskell
+description: Parses Org mode syntax and outputs JSON
+author: User
+maintainer: user@example.com
+copyright: "2025"
+category: Parser
+extra-source-files: []
+dependencies:
+  - base >= 4.7 && < 5
+  - megaparsec
+  - aeson
+  - text
+  - bytestring
+  - hspec
+library:
+  source-dirs: src
+  exposed-modules:
+    - Org.Parser
+    - Org.Types
+    - Org.Json
+executables:
+  horg:
+    main: Main.hs
+    source-dirs: src
+    dependencies:
+      - horg
+tests:
+  horg-test:
+    main: Spec.hs
+    source-dirs: test
+    dependencies:
+      - horg
+      - hspec

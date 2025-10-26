@@ -1,0 +1,72 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.37.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           horg
+version:        0.1.0.0
+synopsis:       Org mode parser in Haskell
+description:    Parses Org mode syntax and outputs JSON
+category:       Parser
+author:         User
+maintainer:     user@example.com
+copyright:      2025
+license:        AGPL-3
+license-file:   LICENSE
+build-type:     Simple
+
+library
+  exposed-modules:
+      Org.Parser
+      Org.Types
+      Org.Json
+  other-modules:
+      Main
+      Paths_horg
+  hs-source-dirs:
+      src
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , hspec
+    , megaparsec
+    , text
+  default-language: Haskell2010
+
+executable horg
+  main-is: Main.hs
+  other-modules:
+      Org.Json
+      Org.Parser
+      Org.Types
+      Paths_horg
+  hs-source-dirs:
+      src
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , horg
+    , hspec
+    , megaparsec
+    , text
+  default-language: Haskell2010
+
+test-suite horg-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_horg
+  hs-source-dirs:
+      test
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , horg
+    , hspec
+    , megaparsec
+    , text
+  default-language: Haskell2010
