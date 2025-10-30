@@ -21,9 +21,6 @@ library
       Org.Parser
       Org.Types
       Org.Json
-  other-modules:
-      Main
-      Paths_horg
   hs-source-dirs:
       src
   build-depends:

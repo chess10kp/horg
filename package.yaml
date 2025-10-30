@@ -20,6 +20,7 @@ library:
     - Org.Parser
     - Org.Types
     - Org.Json
+  other-modules: []
 executables:
   horg:
     main: Main.hs
