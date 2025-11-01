@@ -1,0 +1,5 @@
+* Task with invalid logbook entry
+:LOGBOOK:
+CLOCK: [2025-01-01 Wed 09:00]--[2025-01-01 Wed 10:00] =>  1:00
+SOME_UNKNOWN_ENTRY: this should fail
+:END:

@@ -51,19 +51,27 @@ calculateProgress blocks = case countTodoHeadlines blocks of
   (done, total) -> Just (Progress done total)
 
 countTodoHeadlines :: [Block] -> (Int, Int)
-countTodoHeadlines = foldl count (0, 0)
+countTodoHeadlines blocks = foldl count (0, 0) blocks
   where
-    count acc (Headline _ (Just Todo) _ progress _) = 
+    count acc (Headline _ (Just Todo) _ progress children) = 
       let (doneSub, totalSub) = case progress of
             Just (Progress d t) -> (d, t)
-            Nothing -> (0, 0)
+            Nothing -> countTodoHeadlines children
           -- If a TODO task has more DONE than TODO subtasks, count it as DONE
           isEffectivelyDone = doneSub > 0 && doneSub >= (totalSub - doneSub)
+          (childDone, childTotal) = countTodoHeadlines children
       in if isEffectivelyDone 
-         then (fst acc + 1, snd acc + 1) 
-         else (fst acc, snd acc + 1)
-    count acc (Headline _ (Just Done) _ _ _) = (fst acc + 1, snd acc + 1)
-    count acc (Headline _ (Just (Other _)) _ _ _) = (fst acc, snd acc + 1)
+         then (fst acc + 1 + childDone, snd acc + 1 + childTotal) 
+         else (fst acc + childDone, snd acc + 1 + childTotal)
+    count acc (Headline _ (Just Done) _ _ children) = 
+      let (childDone, childTotal) = countTodoHeadlines children
+      in (fst acc + 1 + childDone, snd acc + 1 + childTotal)
+    count acc (Headline _ (Just (Other _)) _ _ children) = 
+      let (childDone, childTotal) = countTodoHeadlines children
+      in (fst acc + childDone, snd acc + 1 + childTotal)
+    count acc (Headline _ Nothing _ _ children) = 
+      let (childDone, childTotal) = countTodoHeadlines children
+      in (fst acc + childDone, snd acc + childTotal)
     count acc _ = acc
 
 parseBlock :: Int -> Parser Block

@@ -1,0 +1,10 @@
+* Todos [0/18]
+** WORK [#A] jobs :jobsearch:daily:
+:PROPERTIES:
+:LAST_REPEAT: [2025-09-02 Tue 16:18]
+:END:
+<2025-09-05 Fri ++1d>
+:LOGBOOK:
+CLOCK: [2025-10-18 Sat 19:51]--[2025-10-18 Sat 20:23] =>  0:32
+CLOCK: [2025-08-30 Sat 12:02]--[2025-08-30 Sat 12:36] =>  0:34
+:END:

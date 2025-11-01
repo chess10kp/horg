@@ -1,0 +1,5 @@
+* Test Task
+:LOGBOOK:
+- State "DONE" from "TODO" [2025-01-15 Mon 11:30]
+CLOCK: [2025-01-15 Mon 09:00]--[2025-01-15 Mon 11:00] =>  2:00
+:END:
